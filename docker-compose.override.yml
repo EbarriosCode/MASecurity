@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  masecurity:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_HTTPS_PORT=44355
+      - DB_ENDPOINT=database
+      - DB_MIGRATE=true
+      - DB_INITIALIZE=true
+    ports:
+      - "60620:80"
+      - "44355:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro

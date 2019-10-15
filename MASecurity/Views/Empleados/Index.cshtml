@@ -1,0 +1,73 @@
+﻿@model IEnumerable<MASecurity.Models.Empleado>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">Empleados</h1>
+
+@if (TempData["Rol"].ToString() == "Administrador")
+{
+    <p>
+        <a class="btn btn-info" asp-action="Create">Nuevo</a>
+    </p>
+}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telefono)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Direccion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Puesto)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telefono)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Direccion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Puesto.Nombre)
+                    </td>
+                    <td>
+
+                        @if (TempData["Rol"].ToString() == "Administrador")
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.EmpleadoID">Editar</a> <text>|</text>
+                            <a asp-action="Details" asp-route-id="@item.EmpleadoID">Detalles</a> <text>|</text>
+                            <a asp-action="Delete" asp-route-id="@item.EmpleadoID">Eliminar</a>
+                        }
+
+                        @if (TempData["Rol"].ToString() == "RH")
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.EmpleadoID">Editar</a> <text>|</text>
+                            <a asp-action="Details" asp-route-id="@item.EmpleadoID">Detalles</a>
+                        }
+
+                        @if (TempData["Rol"].ToString() == "Operador")
+                        {
+                            <a asp-action="Details" asp-route-id="@item.EmpleadoID">Detalles</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

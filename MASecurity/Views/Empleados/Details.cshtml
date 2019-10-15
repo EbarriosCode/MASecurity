@@ -1,0 +1,46 @@
+﻿@model MASecurity.Models.Empleado
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Detalle</h1>
+
+<div>
+    <h4>Empleado</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre):
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Telefono):
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Direccion):
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Puesto):
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Puesto.Nombre)
+        </dd>
+    </dl>
+</div>
+<div>
+    @if (TempData["Rol"].ToString() == "Administrador" || TempData["Rol"].ToString() == "RH")
+    {
+        <a asp-action="Edit" asp-route-id="@Model.EmpleadoID">Editar</a> <text>|</text>
+    }
+    <a asp-action="Index">Regresar</a>
+</div>

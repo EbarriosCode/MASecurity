@@ -1,0 +1,50 @@
+﻿@model MASecurity.Models.Usuario
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<div class="container-login100">
+    <div class="wrap-login100 p-b-160 p-t-50">
+        <form class="login100-form validate-form" asp-action="Login" method="post">
+            @Html.AntiForgeryToken()
+            <span class="login100-form-title p-b-43">
+                MA-Security
+            </span>
+
+            <div class="wrap-input100 rs1 validate-input" data-validate="El Usuario es requerido">
+                <input class="input100" type="text" asp-for="UserName">
+                <span class="label-input100">Usuario</span>
+            </div>
+
+            <div class="wrap-input100 rs2 validate-input" data-validate="La contraseña es requerida">
+                <input class="input100" type="password" asp-for="Password">
+                <span class="label-input100">Contraseña</span>
+            </div>
+
+            <div class="container-login100-form-btn">
+                <input type="submit" class="login100-form-btn" value="Entrar" />
+            </div>
+
+            <br />
+            <div class="text-center w-full p-t-23">                
+                    <span class="text-white" asp-validation-for="UserName"></span><br />
+                    <span class="text-white" asp-validation-for="Password"></span>               
+            </div>
+            
+
+            <br />
+            <div class="text-center w-full p-t-23">
+                <a class="txt1">
+                    Olvidó su contraseña?
+                </a>
+            </div>
+        </form>
+
+        <div class="text-center">
+            <br /><br />
+            <h4 class="text-black">@ViewData["ErrorLogin"]</h4>
+        </div>
+    </div>
+</div>
+

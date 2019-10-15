@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  masecurity:
+    image: ma_security
+    container_name: ma_security_web
+    build:
+      context: .
+      dockerfile: MASecurity/Dockerfile
+    depends_on:
+      - database
+
+  database:
+    image: microsoft/mssql-server-linux:latest
+    container_name: ma_security_db
+    ports:
+      - 1433:1433
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "MaestriaSeguridad2019"
